@@ -1,6 +1,6 @@
 {
   "name": "tailwindcss-palette-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Quickly generate tailwindcss color palettes from a base color.",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/bobthered/tailwindcss-palette-generator.git"
   },
-  "keywords": [],
+  "keywords": [
+    "color",
+    "generate",
+    "generator",
+    "palette",
+    "tailwind",
+    "tailwindcss"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {

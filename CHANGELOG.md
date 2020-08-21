@@ -1,3 +1,11 @@
+## 1.0.2
+
+### Added
+
+- package.json - keywords
+
+---
+
 ## 1.0.1
 
 ### Added
@@ -7,6 +15,8 @@
 ### Fixed
 
 - main.js - removed debug console.log()
+
+---
 
 ## 1.0.0
 
