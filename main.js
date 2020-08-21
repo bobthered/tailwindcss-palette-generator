@@ -83,18 +83,4 @@ const mix = (rgb1, rgb2, percentage = 0.5) =>
     Math.round(rgb1[i] * percentage + rgb2[i] * (1 - percentage)),
   );
 
-console.log(
-  paletteGenerator([{ name: 'red', color: '#ED1C24' }], {
-    shades: {
-      lightest: { color: '#ffffff', percent: 0.88 },
-      lighter: { color: '#ffffff', percent: 0.705 },
-      light: { color: '#ffffff', percent: 0.215 },
-      base: { color: '#ffffff', percent: 0 },
-      dark: { color: '#000000', percent: 0.215 },
-      darker: { color: '#000000', percent: 0.45 },
-      darkest: { color: '#000000', percent: 0.705 },
-    },
-  }),
-);
-
 module.exports = paletteGenerator;
