@@ -22,7 +22,7 @@
 ## Install
 
 ```sh
-npm install tailwindcss-palette-generator
+npm install @bobthered/tailwindcss-palette-generator
 ```
 
 ---
@@ -50,7 +50,7 @@ paletteGenerator(colors, [options]);
 const plugin = require('tailwindcss/plugin');
 
 // import palette generator package
-const paletteGenerator = require('tailwindcss-palette-generator');
+const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
 
 module.exports = {
   purge: [],

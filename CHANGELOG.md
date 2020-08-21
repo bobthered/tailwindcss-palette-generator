@@ -1,3 +1,11 @@
+## 1.0.4
+
+### Change
+
+- README.md - added "@bobthered" prefix to package name
+
+---
+
 ## 1.0.3
 
 ### Change
