@@ -1,0 +1,1 @@
+# tailwindcss-palette-generator
