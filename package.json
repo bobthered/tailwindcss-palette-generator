@@ -1,6 +1,6 @@
 {
-  "name": "tailwindcss-palette-generator",
-  "version": "1.0.2",
+  "name": "@bobthered/tailwindcss-palette-generator",
+  "version": "1.0.3",
   "description": "Quickly generate tailwindcss color palettes from a base color.",
   "main": "index.js",
   "scripts": {

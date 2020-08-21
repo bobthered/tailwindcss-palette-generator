@@ -1,3 +1,11 @@
+## 1.0.3
+
+### Change
+
+- package.json - "name": "@bobthered/tailwindcss-palette-generator"
+
+---
+
 ## 1.0.2
 
 ### Added
