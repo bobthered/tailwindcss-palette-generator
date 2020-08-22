@@ -46,9 +46,6 @@ paletteGenerator(colors, [options]);
 
 ```js
 // tailwindcss.config.js
-
-const plugin = require('tailwindcss/plugin');
-
 // import palette generator package
 const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
 

@@ -35,7 +35,7 @@ Provide multiple objects in the first [`colors`] parameter
 
 ```js
 paletteGenerator([
-  { name: 'red', color: '#ED1C24' },
+  { name: 'red',  color: '#ED1C24' },
   { name: 'gray', color: '#A0AEC0' },
 ]);
 ```
@@ -171,13 +171,13 @@ Specify the shades in the optional [`shades`] parameter
 ```js
 paletteGenerator([{ name: 'red', color: '#ED1C24' }], {
   shades: {
-    lightest: { color: '#ffffff', percent: 0.88 },
-    lighter: { color: '#ffffff', percent: 0.705 },
-    light: { color: '#ffffff', percent: 0.215 },
-    base: { color: '#ffffff', percent: 0 },
-    dark: { color: '#000000', percent: 0.215 },
-    darker: { color: '#000000', percent: 0.45 },
-    darkest: { color: '#000000', percent: 0.705 },
+    lightest: { color: '#ffffff', percent: 0.88  },
+    lighter:  { color: '#ffffff', percent: 0.705 },
+    light:    { color: '#ffffff', percent: 0.215 },
+    base:     { color: '#ffffff', percent: 0     },
+    dark:     { color: '#000000', percent: 0.215 },
+    darker:   { color: '#000000', percent: 0.45  },
+    darkest:  { color: '#000000', percent: 0.705 },
   },
 });
 ```
