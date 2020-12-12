@@ -1,138 +1,54 @@
-# Welcome to tailwindcss-palette-generator 👋
+<link rel="stylesheet" type="text/css" href="./style.css" />
+<h1 class="text-center text-4xl p-8">TailwindCSS - Palette Generator</h1>
+<p class="text-center p-4">
+Quickly generate <a href="https://tailwindcss.com" class="shadow-link hover:no-underline">tailwindcss</a> color palettes from a base color or colors.
+</p>
+<div class="flex justify-center py-4">
+  <a href="https://badge.fury.io/js/%40bobthered%2Ftailwindcss-palette-generator">
+    <img src="https://badge.fury.io/js/%40bobthered%2Ftailwindcss-palette-generator.svg"
+         alt="NPM">
+  </a>
+</div>
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/bobthered/tailwindcss-palette-generator#readme)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/bobthered/tailwindcss-palette-generator/graphs/commit-activity)
-[![License: MIT](https://img.shields.io/github/license/bobthered/tailwindcss-palette-generator)](https://github.com/bobthered/tailwindcss-palette-generator/blob/master/LICENSE)
+<div class="items-center py-4 text-lg text-center">
+  <a href="#key-features" class="shadow-link hover:no-underline">Key Features</a> •
+  <a href="#installation" class="shadow-link hover:no-underline">Installation</a> •
+  <a href="#usage" class="shadow-link hover:no-underline">Usage</a>
+</div>
 
-> Quickly generate tailwind color palettes from a base color.
+<div class="flex flex-col">
+  <section id="key-features" class="w-full py-4">
+    <h4 class="text-2xl py-4">Key Features</h4>
+    <ul class="list-disc pl-4">
+      <li>Generate color palette with as little as a hex value</li>
+      <li>Customize the palette shade names</li>
+      <li>Default color naming applied automatically or can be overwritten</li>
+      <li>Shade intensities can be overwritten for full control</li>
+    </ul>
+  </section>
+  <section id="installation" class="w-full py-4">
+  <h4 class="text-2xl py-4">Installation</h4>
+    
+    npm i @bobthered/tailwindcss-palette-generator
 
-### 🏠 [Homepage](https://github.com/bobthered/tailwindcss-palette-generator#readme)
+  </section>
+  <section id="usage" class="w-full py-4">
+    <h4 class="text-2xl py-4">Usage</h4>
 
----
+    // tailwind.config.js
+    const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
 
-## Requirements
+    module.exports = {
+      purge: [],
+      darkMode: false, // or 'media' or 'class'
+      theme: {
+        extend: {
+          colors: paletteGenerator('#FF0040'),
+        },
+      },
+      variants: {},
+      plugins: [],
+    };
 
-1. Node.js installed ( [download](https://nodejs.org/en/) )
-2. tailwindcss installed ( [instructions](https://tailwindcss.com/docs/installation) )
-3. tailwindcss configuration file created ( [instructions](https://tailwindcss.com/docs/configuration) )
-
----
-
-## Install
-
-```sh
-npm install @bobthered/tailwindcss-palette-generator
-```
-
----
-
-## Syntax
-
-```js
-/**
- * @param {Array.<{name: String, color: String | Array, [alpha]: Number, [mode]: String}>} colors
- * @param {Object} [options]
- */
-
-paletteGenerator(colors, [options]);
-```
-
----
-
-## Usage
-
-[Additional Examples](/EXAMPLES.md)
-
-```js
-// tailwindcss.config.js
-// import palette generator package
-const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
-
-module.exports = {
-  purge: [],
-  theme: {
-    extend: {
-      colors: paletteGenerator([{ name: 'red', color: '#ED1C24' }]),
-    },
-  },
-  variants: {},
-  plugins: [],
-};
-```
-
----
-
-## Paramaters
-
-**colors** [*Array*] _required_<br>
-
-- name
-  - required
-  - Type: String
-- color
-  - required
-  - Type: String or Array
-- alpha
-  - optional
-  - Type: Number
-  - Range: 0.0 to 1.0
-- mode
-  - optional
-  - Type: String
-  - Values: 'hex', '#hex', 'rgb', 'rgba', 'hsl', 'hsla'
-
-**options** [*Object*] _optional_<br>
-
-- alpha
-  - optional
-  - Type: Number
-  - Range: 0.0 to 1.0
-- output
-  - optional
-  - Type: String
-  - Values: 'hex', '#hex', 'rgb', 'rgba', 'hsl', 'hsla'
-- shades
-  - optional
-  - Type: Object
-  - Values:
-    - color
-      - required
-      - Type: String or Array
-    - percent
-      - optional
-      - Type: Number
-      - Range: 0.0 to 1.0
-    - alpha
-      - optional
-      - Type: Number
-      - Range: 0.0 to 1.0
-    - mode
-      - optional
-      - Type: String
-      - Values: 'hex', '#hex', 'rgb', 'rgba', 'hsl', 'hsla'
-
-## Author
-
-👤 **Bob McAleavey**
-
-- Website: bobthered.com
-- Github: [@bobthered](https://github.com/bobthered)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!
-
-Feel free to check [issues page](https://github.com/bobthered/tailwindcss-palette-generator/issues). You can also take a look at the [contributing guide](https://github.com/bobthered/tailwindcss-palette-generator/blob/master/CONTRIBUTING.md).
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-## 📝 License
-
-Copyright © 2020 [Bob McAleavey](https://github.com/bobthered).
-
-This project is [MIT](https://github.com/bobthered/tailwindcss-palette-generator/blob/master/LICENSE) licensed.
-
----
+  </section>
+</div>

@@ -1,10 +1,11 @@
 {
   "name": "@bobthered/tailwindcss-palette-generator",
   "version": "2.0.0",
-  "description": "Quickly generate tailwindcss color palettes from a base color.",
+  "description": "Quickly generate tailwindcss color palettes from a base color or colors.",
   "main": "index.js",
   "scripts": {
-    "tw:build": "postcss src/css/tailwind.css -o public/css/tailwind.css"
+    "tw:build": "postcss tailwind.css -o style.css",
+    "tw:prod": "NODE_ENV=production postcss tailwind.css -o style.css"
   },
   "repository": {
     "type": "git",
@@ -24,9 +25,9 @@
     "url": "https://github.com/bobthered/tailwindcss-palette-generator/issues"
   },
   "homepage": "https://github.com/bobthered/tailwindcss-palette-generator#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "autoprefixer": "^10.1.0",
-    "color-namer": "^1.4.0",
     "postcss": "^8.2.1",
     "postcss-cli": "^8.3.1",
     "tailwindcss": "^2.0.2"
