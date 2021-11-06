@@ -1,4 +1,4 @@
-const tailwindcssPaletteGenerator = input => {
+const tailwindcssPaletteGenerator = (input, mode = 'hex') => {
   // addColor function
   const addColor = color => {
     let colorParams = {
@@ -54,7 +54,7 @@ const tailwindcssPaletteGenerator = input => {
     b = Math.round(b * (1 - intensity));
 
     // return the new hex color
-    return rgbToHex(r, g, b);
+    return mode === 'hsl' ? rgbToHsl(r, g, b) : rgbToHex(r, g, b);
   };
 
   // lighten function
@@ -68,7 +68,7 @@ const tailwindcssPaletteGenerator = input => {
     b = Math.round(b + (255 - b) * intensity);
 
     // return the new hex color
-    return rgbToHex(r, g, b);
+    return mode === 'hsl' ? rgbToHsl(r, g, b) : rgbToHex(r, g, b);
   };
 
   // hexToRgb function
@@ -84,6 +84,27 @@ const tailwindcssPaletteGenerator = input => {
 
   // rgbToHex function
   const rgbToHex = (r, g, b) => `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+
+  function rgbToHsl(r, g, b) {
+    r /= 255, g /= 255, b /= 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if (max == min) {
+      h = s = 0; // achromatic
+    } else {
+      var d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+        case g: h = (b - r) / d + 2; break;
+        case b: h = (r - g) / d + 4; break;
+      }
+      h /= 6;
+    }
+
+    return `hsl(var(--brand-hue, ${Math.floor(h * 360)}) ${Math.floor(s * 100)}% ${Math.floor(l * 100)}%)`;
+  }
 
   // toHex function
   const toHex = n => `0${n.toString(16)}`.slice(-2).toUpperCase();
