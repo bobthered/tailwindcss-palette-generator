@@ -1,8 +1,7 @@
-<link rel="stylesheet" type="text/css" href="./style.css" />
-<h1 class="text-center text-4xl p-8">TailwindCSS - Palette Generator</h1>
-<p class="text-center p-4">
-Quickly generate <a href="https://tailwindcss.com" class="shadow-link hover:no-underline">tailwindcss</a> color palettes from a base color or colors.
-</p>
+# TailwindCSS - Palette Generator
+
+Quickly generate [tailwindcss](https://www.tailwindcss.com) color palettes from a base color or colors.
+
 <div class="flex justify-center py-4">
   <a href="https://badge.fury.io/js/%40bobthered%2Ftailwindcss-palette-generator">
     <img src="https://badge.fury.io/js/%40bobthered%2Ftailwindcss-palette-generator.svg"
@@ -10,45 +9,101 @@ Quickly generate <a href="https://tailwindcss.com" class="shadow-link hover:no-u
   </a>
 </div>
 
-<div class="items-center py-4 text-lg text-center">
-  <a href="#key-features" class="shadow-link hover:no-underline">Key Features</a> •
-  <a href="#installation" class="shadow-link hover:no-underline">Installation</a> •
-  <a href="#usage" class="shadow-link hover:no-underline">Usage</a>
-</div>
+[Demo](#demo) • [Key Features](#key-features) • [Installation](#installation) • [Usage](#usage) • [Examples](#examples)
 
-<div class="flex flex-col">
-  <section id="key-features" class="w-full py-4">
-    <h4 class="text-2xl py-4">Key Features</h4>
-    <ul class="list-disc pl-4">
-      <li>Generate color palette with as little as a hex value</li>
-      <li>Customize the palette shade names</li>
-      <li>Default color naming applied automatically or can be overwritten</li>
-      <li>Shade intensities can be overwritten for full control</li>
-    </ul>
-  </section>
-  <section id="installation" class="w-full py-4">
-  <h4 class="text-2xl py-4">Installation</h4>
-    
-    npm i @bobthered/tailwindcss-palette-generator
+## Demo<a name="demo"></a>
 
-  </section>
-  <section id="usage" class="w-full py-4">
-    <h4 class="text-2xl py-4">Usage</h4>
+Interactive [demo](https://bobthered.github.io/tailwindcss-palette-generator) generating tailwindcss palettes
 
-    // tailwind.config.js
-    const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
+## Key Features<a name="key-features"></a>
 
-    module.exports = {
-      purge: [],
-      darkMode: false, // or 'media' or 'class'
-      theme: {
-        extend: {
-          colors: paletteGenerator('#FF0040'),
-        },
-      },
-      variants: {},
-      plugins: [],
-    };
+- Generate color palette with as little as a hex value ( [See Example](#example-1) )
+- Generate multiple color palettes ( [See Example](#example-2) )
+- Customize the palette shade names & lightnesses ( [See Example](#example-3) )
+- Default color naming applied automatically or can be overwritten ( [See Example](#example-4) )
 
-  </section>
-</div>
+## Installation<a name="installation"></a>
+
+```
+npm i @bobthered/tailwindcss-palette-generator
+```
+
+## Usage<a name="usage"></a>
+
+### Example - Basic<a name="example-1"></a>
+
+```js
+// tailwind.config.js
+const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
+
+module.exports = {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  theme: {
+    extend: {
+      colors: paletteGenerator('#FF0040'),
+    },
+  },
+  plugins: [],
+};
+```
+
+### Example - Multiple Colors<a name="example-2"></a>
+
+```js
+// tailwind.config.js
+const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
+
+module.exports = {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  theme: {
+    extend: {
+      colors: paletteGenerator(['#FF0040', '#FFBB00']),
+    },
+  },
+  plugins: [],
+};
+```
+
+### Example - Custom Shades and Lightness<a name="example-3"></a>
+
+```js
+// tailwind.config.js
+const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
+
+module.exports = {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  theme: {
+    extend: {
+      colors: paletteGenerator({
+        colors: ['#FF0040'],
+        shades: [
+          { name: 'light', lightness: 95 },
+          { name: 'normal', lightness: 46 },
+          { name: 'dark', lightness: 7 },
+        ],
+      }),
+    },
+  },
+  plugins: [],
+};
+```
+
+### Example - Override color names<a name="example-4"></a>
+
+```js
+// tailwind.config.js
+const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
+
+module.exports = {
+  content: ['./src/**/*.{html,js,svelte,ts}'],
+  theme: {
+    extend: {
+      colors: paletteGenerator({
+        colors: ['#FF0040', '#FFBB00'],
+        names: ['red', 'yellow'],
+      }),
+    },
+  },
+  plugins: [],
+};
+```
