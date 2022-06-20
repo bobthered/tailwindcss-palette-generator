@@ -1,163 +1,126 @@
-const tailwindcssPaletteGenerator = input => {
-  // addColor function
-  const addColor = color => {
-    let colorParams = {
-      hex: '',
-      name: '',
-      shades: params.shades,
-    };
+const generateColor = ({ hex, shades }) => {
+  // convert hex to hsl
+  const colorHSL = hexToHSL(hex);
 
-    // check input params
-    if (typeof color === 'string') colorParams.hex = color;
-    if (typeof color === 'object' && Array.isArray(color)) {
-      colorParams.name = color.shift();
-      colorParams.hex = color.shift();
-    }
-    if (typeof color === 'object' && !Array.isArray(color)) {
-      if (Object.keys(color).length === 1) {
-        colorParams.name = Object.keys(color)[0];
-        colorParams.hex = Object.values(color)[0];
+  // initiate shade object
+  const obj = {};
+
+  // generate shades
+  shades = shades.forEach(({ name, lightness }) => {
+    // deconstruct h & s
+    const { h, s } = colorHSL;
+
+    // generate shade hsl
+    const hsl = { h, s, l: lightness };
+
+    // convert hsl to hex
+    const hex = hslToHEX(hsl);
+
+    // update shade object
+    obj[name] = hex;
+  });
+
+  return obj;
+};
+
+const hexToHSL = hex => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  try {
+    let r = parseInt(result[1], 16);
+    let g = parseInt(result[2], 16);
+    let b = parseInt(result[3], 16);
+    (r /= 255), (g /= 255), (b /= 255);
+    var max = Math.max(r, g, b),
+      min = Math.min(r, g, b);
+    var h,
+      s,
+      l = (max + min) / 2;
+    if (max == min) {
+      h = s = 0; // achromatic
+    } else {
+      var d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        case b:
+          h = (r - g) / d + 4;
+          break;
       }
-      if (Object.keys(color).length !== 1)
-        colorParams = Object.assign(colorParams, color);
+      h /= 6;
     }
-
-    // check if string is invalid
-    if (!/^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/.test(colorParams.hex)) return;
-
-    // add hash tag if needed
-    if (!/^#/.test(colorParams.hex)) colorParams.hex = '#' + colorParams.hex;
-
-    // if no name present, get a default name
-    if (colorParams.name === '') colorParams.name = params.colorNames.shift();
-
-    // set palette name
-    palette[colorParams.name] = {};
-
-    // generate shades
-    Object.keys(colorParams.shades).forEach(shade => {
-      palette[colorParams.name][shade] =
-        colorParams.shades[shade].type === 'lighten'
-          ? lighten(colorParams.hex, colorParams.shades[shade].intensity)
-          : darken(colorParams.hex, colorParams.shades[shade].intensity);
-    });
+    const HSL = new Object();
+    HSL['h'] = Math.round(h * 360);
+    HSL['s'] = Math.round(s * 100);
+    HSL['l'] = Math.round(l * 100);
+    return HSL;
+  } catch (error) {
+    console.log(hex);
+    return { h: 0, s: 0, l: 0 };
+  }
+};
+const hslToHEX = ({ h, s, l }) => {
+  l /= 100;
+  const a = (s * Math.min(l, 1 - l)) / 100;
+  const f = n => {
+    const k = (n + h / 30) % 12;
+    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color)
+      .toString(16)
+      .padStart(2, '0'); // convert to Hex and prefix "0" if needed
   };
+  return `#${f(0)}${f(8)}${f(4)}`;
+};
 
-  // darken function
-  const darken = (hex, intensity) => {
-    // get r, g, b values
-    let { r, g, b } = hexToRgb(hex);
+const tailwindcssPaletteGenerator = props => {
+  // defaults
+  const colors = [];
+  const names = [
+    'primary',
+    'secondary',
+    'tertiary',
+    'quaternary',
+    'quinary',
+    'senary',
+    'septenary',
+    'octonary',
+    'nonary',
+    'denary',
+  ];
+  const shades = [
+    { name: '50', lightness: 98 },
+    { name: '100', lightness: 95 },
+    { name: '200', lightness: 90 },
+    { name: '300', lightness: 82 },
+    { name: '400', lightness: 64 },
+    { name: '500', lightness: 46 },
+    { name: '600', lightness: 33 },
+    { name: '700', lightness: 24 },
+    { name: '800', lightness: 14 },
+    { name: '900', lightness: 7 },
+    { name: '950', lightness: 4 },
+  ];
 
-    // darken the r, g, b values
-    r = Math.round(r * (1 - intensity));
-    g = Math.round(g * (1 - intensity));
-    b = Math.round(b * (1 - intensity));
-
-    // return the new hex color
-    return rgbToHex(r, g, b);
-  };
-
-  // lighten function
-  const lighten = (hex, intensity) => {
-    // get r, g, b values
-    let { r, g, b } = hexToRgb(hex);
-
-    // lighten the r, g, b values
-    r = Math.round(r + (255 - r) * intensity);
-    g = Math.round(g + (255 - g) * intensity);
-    b = Math.round(b + (255 - b) * intensity);
-
-    // return the new hex color
-    return rgbToHex(r, g, b);
-  };
-
-  // hexToRgb function
-  const hexToRgb = string => {
-    // get the r,g,b values
-    const [r, g, b] = string
-      .replace('#', '')
-      .match(/.{1,2}/g)
-      .map(a => parseInt(a, 16));
-
-    return { r, g, b };
-  };
-
-  // rgbToHex function
-  const rgbToHex = (r, g, b) => `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-
-  // toHex function
-  const toHex = n => `0${n.toString(16)}`.slice(-2).toUpperCase();
+  // check props type
+  if (typeof props === 'string') props = { colors: [props], names, shades };
+  if (typeof props === 'object' && Array.isArray(props))
+    props = { colors: props, names, shades };
+  if (typeof props === 'object' && !Array.isArray(props))
+    props = Object.assign({ colors, names, shades }, props);
 
   // initiate palette
   const palette = {};
 
-  // set default params
-  let params = {
-    colors: [],
-    colorNames: [
-      'primary',
-      'secondary',
-      'tertiary',
-      'quaternary',
-      'quinary',
-      'senary',
-      'septenary',
-      'octonary',
-      'nonary',
-      'denary',
-    ],
-    shades: {
-      50: {
-        intensity: 0.95,
-        type: 'lighten',
-      },
-      100: {
-        intensity: 0.9,
-        type: 'lighten',
-      },
-      200: {
-        intensity: 0.75,
-        type: 'lighten',
-      },
-      300: {
-        intensity: 0.6,
-        type: 'lighten',
-      },
-      400: {
-        intensity: 0.3,
-        type: 'lighten',
-      },
-      500: {
-        intensity: 0,
-        type: 'lighten',
-      },
-      600: {
-        intensity: 0.1,
-        type: 'darken',
-      },
-      700: {
-        intensity: 0.25,
-        type: 'darken',
-      },
-      800: {
-        intensity: 0.4,
-        type: 'darken',
-      },
-      900: {
-        intensity: 0.51,
-        type: 'darken',
-      },
-    },
-  };
-
-  // check input params
-  if (typeof input === 'string') params.colors.push(input);
-  if (typeof input === 'object' && Array.isArray(input)) params.colors = input;
-  if (typeof input === 'object' && !Array.isArray(input))
-    params = Object.assign(params, input);
-
-  // loop through colors
-  params.colors.forEach(addColor);
+  // loop through palette
+  props.colors.forEach((hex, i) => {
+    const name = props.names[i];
+    const color = generateColor({ hex, shades });
+    palette[name] = color;
+  });
 
   return palette;
 };
