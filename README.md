@@ -41,13 +41,15 @@ npm i @bobthered/tailwindcss-palette-generator
 
 ```js
 // tailwind.config.js
-const palette = require("@bobthered/tailwindcss-palette-generator");
+const {
+  tailwindcssPaletteGenerator,
+} = require("@bobthered/tailwindcss-palette-generator");
 
 module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
-      colors: palette("#FF0040"),
+      colors: tailwindcssPaletteGenerator("#FF0040"),
     },
   },
   plugins: [],
@@ -58,13 +60,15 @@ module.exports = {
 
 ```js
 // tailwind.config.js
-const palette = require("@bobthered/tailwindcss-palette-generator");
+const {
+  tailwindcssPaletteGenerator,
+} = require("@bobthered/tailwindcss-palette-generator");
 
 module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
-      colors: palette(["#FF0040", "#FFBB00"]),
+      colors: tailwindcssPaletteGenerator(["#FF0040", "#FFBB00"]),
     },
   },
   plugins: [],
@@ -75,13 +79,15 @@ module.exports = {
 
 ```js
 // tailwind.config.js
-const palette = require("@bobthered/tailwindcss-palette-generator");
+const {
+  tailwindcssPaletteGenerator,
+} = require("@bobthered/tailwindcss-palette-generator");
 
 module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
-      colors: palette({
+      colors: tailwindcssPaletteGenerator({
         colors: ["#FF0040"],
         shades: [
           { name: "light", lightness: 95 },
@@ -99,13 +105,15 @@ module.exports = {
 
 ```js
 // tailwind.config.js
-const palette = require("@bobthered/tailwindcss-palette-generator");
+const {
+  tailwindcssPaletteGenerator,
+} = require("@bobthered/tailwindcss-palette-generator");
 
 module.exports = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
   theme: {
     extend: {
-      colors: palette({
+      colors: tailwindcssPaletteGenerator({
         colors: ["#FF0040", "#FFBB00"],
         names: ["red", "yellow"],
       }),
