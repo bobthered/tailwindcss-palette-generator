@@ -28,6 +28,7 @@ Interactive [demo](https://bobthered.github.io/tailwindcss-palette-generator) ge
 - Default color naming applied automatically or can be overwritten ( [See Example](#example-4) )
 - Zero (0) dependencies
 - Typescript support
+- Preserve Supplied Color
 
 ## Installation
 

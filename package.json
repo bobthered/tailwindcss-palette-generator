@@ -1,35 +1,78 @@
 {
-  "name": "@bobthered/tailwindcss-palette-generator",
-  "version": "3.1.1",
-  "description": "Quickly generate tailwindcss color palettes from a base color or colors.",
-  "main": "dist/cjs/index.js",
-  "scripts": {
-    "prepublish": "npm run tsc",
-    "tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bobthered/tailwindcss-palette-generator.git"
-  },
-  "keywords": [
-    "color",
-    "generate",
-    "generator",
-    "palette",
-    "tailwind",
-    "tailwindcss"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bobthered/tailwindcss-palette-generator/issues"
-  },
-  "homepage": "https://github.com/bobthered/tailwindcss-palette-generator#readme",
-  "dependencies": {
-    "@types/node": "^18.11.9"
-  },
-  "module": "./dist/esm/index.js",
-  "files": [
-    "dist/"
-  ]
+	"name": "@bobthered/tailwindcss-palette-generator",
+	"version": "3.1.1",
+	"description": "Quickly generate tailwindcss color palettes from a base color or colors.",
+	"scripts": {
+		"dev": "vite dev --port 3000",
+		"build": "vite build && npm run package",
+		"preview": "vite preview",
+		"package": "svelte-kit sync && svelte-package && publint",
+		"prepublishOnly": "npm run package",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test": "vitest",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"release": "standard-version"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"peerDependencies": {
+		"svelte": "^4.0.0"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-static": "^2.0.3",
+		"@sveltejs/kit": "^1.27.4",
+		"@sveltejs/package": "^2.0.0",
+		"@typescript-eslint/eslint-plugin": "^6.0.0",
+		"@typescript-eslint/parser": "^6.0.0",
+		"autoprefixer": "^10.4.14",
+		"color-namer": "^1.4.0",
+		"eslint": "^8.28.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-svelte": "^2.30.0",
+		"imask": "^7.1.3",
+		"postcss": "^8.4.24",
+		"postcss-load-config": "^4.0.1",
+		"prettier": "^3.0.0",
+		"prettier-plugin-svelte": "^3.0.0",
+		"publint": "^0.1.9",
+		"standard-version": "^9.5.0",
+		"svelte": "^4.0.5",
+		"svelte-check": "^3.6.0",
+		"sveltewind": "^1.8.3",
+		"tailwind-merge": "^2.0.0",
+		"tailwindcss": "^3.3.2",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"vite": "^4.4.2",
+		"vitest": "^0.34.0"
+	},
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bobthered/tailwindcss-palette-generator.git"
+	},
+	"keywords": [
+		"color",
+		"generate",
+		"generator",
+		"palette",
+		"tailwind",
+		"tailwindcss"
+	],
+	"license": "MIT",
+	"homepage": "https://github.com/bobthered/tailwindcss-palette-generator#readme"
 }
