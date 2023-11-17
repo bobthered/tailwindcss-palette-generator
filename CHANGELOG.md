@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.1](https://github.com/bobthered/tailwindcss-palette-generator/compare/v3.2.0...v3.2.1) (2023-11-17)
+
+
+### Bug Fixes
+
+* **gh-pages:** automatically send to gh-pages branch ([45c2219](https://github.com/bobthered/tailwindcss-palette-generator/commit/45c2219a7574829fcc53ae03097425604dd95bde))
+
 ## 3.2.0 (2023-11-17)
 
 
