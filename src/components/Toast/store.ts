@@ -12,4 +12,6 @@ const toast = (text: string, options: { duration: number } = { duration: 5000 })
 	}, options.duration);
 };
 
-export { toast, subscribe };
+const store = { toast, subscribe };
+
+export { toast, store, subscribe };
