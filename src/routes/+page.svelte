@@ -22,27 +22,45 @@
 	import hexToRGB from '$lib/hexToRGB.js';
 	import type { Palette } from '$lib/interfaces.js';
 	import { toast } from './Toast/index.js';
-	import { afterUpdate, onMount } from 'svelte';
+	import { afterUpdate } from 'svelte';
 
 	// components
 
 	// utilities
-	const colorModeShade = (hex, mode) => {
+	const colorModeShade = (hex: string, mode: string) => {
 		if (mode === 'hex') return hex;
 		if (mode === 'hsl') {
 			const { h, s, l } = hexToHSL(hex);
 			return `hsl(${h}, ${s}%, ${l}%)`;
 		}
 		if (mode === 'rgb') {
-			const { r, g, b } = hexToRGB(hex);
+			const { r, g, b }: { r: number; g: number; b: number } | null = hexToRGB(hex);
 			return `rgb(${r}, ${g}, ${b})`;
 		}
+	};
+	const initateSearchParams = (searchParams: URLSearchParams) => {
+		let { colors, colorMode, preserve } = Object.fromEntries(searchParams);
+		if (colors === undefined) {
+			const { hex, name } = randomColor();
+			colors = [{ hex, name }];
+		}
+		if (colorMode === undefined) colorMode = 'hex';
+		if (preserve === undefined) preserve = true;
+		searchParams.set('colors', JSON.stringify(colors));
+		searchParams.set('colorMode', colorMode);
+		searchParams.set('preserve', preserve);
+		softRefreshPage(searchParams);
 	};
 	const isLight = (hex: string) => {
 		const { r, g, b } = hexToRGB(hex);
 		const hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
 
 		return hsp > 127.5;
+	};
+	const needToInitiateSearchParams = (searchParams: URLSearchParams) => {
+		let { colors, colorMode, preserve } = Object.fromEntries(searchParams);
+		if (colors === undefined || colorMode === undefined || preserve === undefined) return true;
+		return false;
 	};
 	const softRefreshPage = async (query: URLSearchParams) => {
 		const options = {
@@ -56,13 +74,13 @@
 	// handlers
 	const addColorHandler = () => {
 		const { hex, name } = randomColor();
-		let query = new URLSearchParams($page.url.searchParams.toString());
+		let query = new URLSearchParams(searchParams.toString());
 		const colors = [...JSON.parse(query.get('colors')), { hex, name }];
 		query.set('colors', JSON.stringify(colors));
 		softRefreshPage(query);
 	};
 	const deleteButtonHandler = (index: number) => {
-		let query = new URLSearchParams($page.url.searchParams.toString());
+		let query = new URLSearchParams(searchParams.toString());
 		let colors = JSON.parse(query.get('colors'));
 		colors = colors.filter((_, i) => i !== index);
 		query.set('colors', JSON.stringify(colors));
@@ -70,7 +88,7 @@
 	};
 	const updateColorHexHandler = (e: CustomEvent<any>, index: number) => {
 		const hex = e.target.value.replace(/\#/g, '');
-		let query = new URLSearchParams($page.url.searchParams.toString());
+		let query = new URLSearchParams(searchParams.toString());
 		let colors = JSON.parse(query.get('colors'));
 		const {
 			ntc: [closest]
@@ -81,20 +99,20 @@
 		softRefreshPage(query);
 	};
 	const updateColorModeHandler = (e) => {
-		let query = new URLSearchParams($page.url.searchParams.toString());
+		let query = new URLSearchParams(searchParams.toString());
 		query.set('colorMode', e.target.value);
 		softRefreshPage(query);
 	};
 	const updateColorNameHandler = (e, index) => {
 		const name = e.target.innerHTML;
-		let query = new URLSearchParams($page.url.searchParams.toString());
+		let query = new URLSearchParams(searchParams.toString());
 		let colors = JSON.parse(query.get('colors'));
 		colors[index].name = name;
 		query.set('colors', JSON.stringify(colors));
 		softRefreshPage(query);
 	};
 	const updatePreserveHandler = (e) => {
-		let query = new URLSearchParams($page.url.searchParams.toString());
+		let query = new URLSearchParams(searchParams.toString());
 		query.set('preserve', e.target.checked);
 		softRefreshPage(query);
 	};
@@ -106,12 +124,15 @@
 	});
 	let palette: Palette = {};
 	let preserve = true;
+	let searchParams = new URLSearchParams();
 
 	afterUpdate(() => {
-		let searchParams = Object.fromEntries($page.url.searchParams);
-		const colors = JSON.parse(searchParams.colors);
-		colorMode = searchParams.colorMode;
-		preserve = searchParams.preserve === 'true';
+		searchParams = $page.url.searchParams;
+		if (needToInitiateSearchParams(searchParams)) return initateSearchParams(searchParams);
+		const searchParamsObj = Object.fromEntries(searchParams);
+		const colors = JSON.parse(searchParamsObj.colors);
+		colorMode = searchParamsObj.colorMode;
+		preserve = searchParamsObj.preserve === 'true';
 		palette = tailwindcssPaletteGenerator(
 			colors.reduce(
 				(obj, color) => {
