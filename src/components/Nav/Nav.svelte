@@ -210,6 +210,7 @@ module.exports = config;`;
 				'font-mono text-xs font-medium overflow-auto'
 			)}>{clipboardText}</pre>
 		<Button
+			class="lg:self-end"
 			on:click={() => {
 				download.clipboard(clipboardText);
 				toast('Copied to clipboard');

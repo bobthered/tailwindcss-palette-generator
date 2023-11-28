@@ -13,11 +13,12 @@
 		"test": "vitest",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"release": "standard-version && npm run build && npx gh-pages -d build -t true"
+		"release": "standard-version && npm run build && npx gh-pages -d build -t true && git push --follow-tags origin main && npm publish"
 	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
+			"require": "./dist/index.js",
 			"svelte": "./dist/index.js"
 		}
 	},
@@ -59,6 +60,7 @@
 		"vite": "^4.4.2",
 		"vitest": "^0.34.0"
 	},
+	"main": "./dist/index.js",
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
