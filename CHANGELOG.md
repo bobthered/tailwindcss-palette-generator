@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.4](https://github.com/bobthered/tailwindcss-palette-generator/compare/v3.2.3...v3.2.4) (2024-05-23)
+
 ### [3.2.3](https://github.com/bobthered/tailwindcss-palette-generator/compare/v3.2.2...v3.2.3) (2023-11-28)
 
 
