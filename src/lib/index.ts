@@ -6,7 +6,7 @@ const tailwindcssPaletteGenerator = (
 		| string
 		| string[]
 		| { colors?: string[]; names?: string[]; preserve?: boolean; shades?: Shade[] }
-) => {
+): Palette => {
 	// defaults
 	let colors: string[] = [];
 	let names: string[] = [
