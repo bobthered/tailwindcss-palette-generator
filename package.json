@@ -1,6 +1,6 @@
 {
 	"name": "@bobthered/tailwindcss-palette-generator",
-	"version": "3.2.4",
+	"version": "3.3.0",
 	"description": "Quickly generate tailwindcss color palettes from a base color or colors.",
 	"scripts": {
 		"dev": "vite dev --port 3000",

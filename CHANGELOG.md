@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/bobthered/tailwindcss-palette-generator/compare/v3.2.4...v3.3.0) (2024-10-10)
+
+
+### Features
+
+* provide both cjs & esm exports ([2f82607](https://github.com/bobthered/tailwindcss-palette-generator/commit/2f826079a331801f98e7fc8b7ab3510a33668e88))
+* publish to jsr.io ([b4b40cc](https://github.com/bobthered/tailwindcss-palette-generator/commit/b4b40ccb276d3bd601905824fc8cbbf8b2fc74c7))
+
 ### [3.2.4](https://github.com/bobthered/tailwindcss-palette-generator/compare/v3.2.3...v3.2.4) (2024-05-23)
 
 ### [3.2.3](https://github.com/bobthered/tailwindcss-palette-generator/compare/v3.2.2...v3.2.3) (2023-11-28)
