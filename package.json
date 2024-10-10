@@ -1,6 +1,6 @@
 {
 	"name": "@bobthered/tailwindcss-palette-generator",
-	"version": "3.3.0",
+	"version": "3.3.1",
 	"description": "Quickly generate tailwindcss color palettes from a base color or colors.",
 	"scripts": {
 		"dev": "vite dev --port 3000",
@@ -13,7 +13,7 @@
 		"test": "vitest",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"release": "standard-version && npm run build && npx gh-pages -d build -t true && git push --follow-tags origin main && npm publish"
+		"release": "standard-version && git push --follow-tags origin main && npm publish"
 	},
 	"exports": {
 		".": {
