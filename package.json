@@ -1,7 +1,7 @@
 {
-	"name": "tailwindcss-palette-generator",
-	"version": "0.0.1",
-	"private": true,
+	"name": "@bobthered/tailwindcss-palette-generator",
+	"version": "3.3.2",
+	"description": "Quickly generate tailwindcss color palettes from a base color or colors.",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -10,26 +10,59 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test": "vitest",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"package": "tsup --config ./tsup.esm.minified.ts && tsup --config ./tsup.cjs.minified.ts",
+		"release:dry-run": "npm run package && vitest run && commit-and-tag-version --dry-run",
+		"release": "npm run package && vitest run && commit-and-tag-version"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0-next.6",
 		"@types/eslint": "^9.6.0",
+		"commit-and-tag-version": "^12.5.0",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
 		"globals": "^15.0.0",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
-		"release-please": "^16.14.2",
 		"svelte": "^5.0.0-next.1",
 		"svelte-check": "^4.0.0",
+		"terser": "^5.34.1",
+		"tsup": "^8.3.0",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.0.0",
 		"vite": "^5.0.3",
 		"vitest": "^2.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"files": [
+		"dist",
+		"package.json"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/esm/minified/index.d.ts",
+			"require": "./dist/cjs/minified/index.cjs",
+			"import": "./dist/esm/minified/index.mjs"
+		}
+	},
+	"types": "./dist/esm/minified/index.d.ts",
+	"main": "./dist/cjs/minified/index.cjs",
+	"module": "./dist/esm/minified/index.mjs",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bobthered/tailwindcss-palette-generator.git"
+	},
+	"keywords": [
+		"color",
+		"generate",
+		"generator",
+		"palette",
+		"tailwind",
+		"tailwindcss"
+	],
+	"license": "MIT",
+	"homepage": "https://github.com/bobthered/tailwindcss-palette-generator#readme"
 }
