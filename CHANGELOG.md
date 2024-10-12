@@ -1,6 +1,30 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
+
+## [4.0.0](https://github.com/bobthered/tailwindcss-palette-generator/compare/v3.3.2...v4.0.0) (2024-10-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* scaffold out v4.0.0 project
+
+### Features
+
+* add back MIT license ([aa87e0d](https://github.com/bobthered/tailwindcss-palette-generator/commit/aa87e0db19a404d06fdd40c6d975efb92e26f717))
+* add both cjs & esm tsup configs ([b5bb465](https://github.com/bobthered/tailwindcss-palette-generator/commit/b5bb465734960db47fdab6d26f0be6f508f0928a))
+* add example tests ([4927fa2](https://github.com/bobthered/tailwindcss-palette-generator/commit/4927fa210ff98dbbe9645219c687a3bd4e86a5f9))
+* add explicit return type ([94e2343](https://github.com/bobthered/tailwindcss-palette-generator/commit/94e2343c6a91e2b5fd6840946cc203331cc0634e))
+* add publish settings ([8d57742](https://github.com/bobthered/tailwindcss-palette-generator/commit/8d57742c5d3f14df9433111595fe4856ee462183))
+* ignore /dist folder ([18353b8](https://github.com/bobthered/tailwindcss-palette-generator/commit/18353b87b4e5b8ab255d50a1d9653d4e0c3a866c))
+* only export tailwindcssPaletteGenerator function ([de49c2a](https://github.com/bobthered/tailwindcss-palette-generator/commit/de49c2ae6d5855105f6d1bd7686ac7fc9dff9aa2))
+* remove commented out exports ([b623808](https://github.com/bobthered/tailwindcss-palette-generator/commit/b623808619418132667ef95a7bb335879b9ba341))
+* rewrite base library ([f5306c0](https://github.com/bobthered/tailwindcss-palette-generator/commit/f5306c0a78aa704113c4696d8c57d02ad5d34010))
+* scaffold out v4.0.0 project ([0e18202](https://github.com/bobthered/tailwindcss-palette-generator/commit/0e18202ff45dce14c1784fa37ea2d64469e7153c))
+* update package.json ([384197e](https://github.com/bobthered/tailwindcss-palette-generator/commit/384197ea3490a6ab47799f218e62a33c4322fc20))
+* update README.md for esm import syntax ([afe394e](https://github.com/bobthered/tailwindcss-palette-generator/commit/afe394ee8726503a3550fa6eb60e9c34c99a0058))
+* update release script ([40c8eb4](https://github.com/bobthered/tailwindcss-palette-generator/commit/40c8eb44188048114de267e65e5537e7a5d6173f))
+* update to v4.0.0 ([9f2cc65](https://github.com/bobthered/tailwindcss-palette-generator/commit/9f2cc65aafa6237e6aaebf5ad7bf9869b1785f9e))
 
 ### [3.3.2](https://github.com/bobthered/tailwindcss-palette-generator/compare/v3.3.1...v3.3.2) (2024-10-10)
 
