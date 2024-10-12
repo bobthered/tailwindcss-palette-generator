@@ -1,0 +1,5 @@
+{
+	"name": "@bobthered/tailwindcss-palette-generator",
+	"version": "4.0.0",
+	"exports": "./src/lib/index.ts"
+}
