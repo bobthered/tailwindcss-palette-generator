@@ -1,4 +1,6 @@
-import { hexToHSL, hslToHex, type Color, type HSL, type Shade } from './index.js';
+import { hexToHSL } from './hexToHSL.js';
+import { hslToHex } from './hslToHex.js';
+import { type Color, type HSL, type Shade } from './types.js';
 
 export const generateColor = ({
 	hex,
