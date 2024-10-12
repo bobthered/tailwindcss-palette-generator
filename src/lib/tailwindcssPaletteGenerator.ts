@@ -1,7 +1,7 @@
 import { type Options, type Palette } from './types.js';
 import { generateColor } from './generateColor.js';
 
-export const tailwindcssPaletteGenerator = (options: string | string[] | Options) => {
+export const tailwindcssPaletteGenerator = (options: string | string[] | Options): Palette => {
 	// set default values
 	const defaults: Options = {
 		colors: [],
