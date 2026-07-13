@@ -10,6 +10,7 @@ export type Options = {
 	colors?: string[];
 	names?: string[];
 	preserve?: boolean;
+	anchor?: boolean;
 	shades?: Shade[];
 };
 

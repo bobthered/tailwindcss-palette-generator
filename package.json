@@ -12,6 +12,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"package": "tsup --config ./tsup.esm.minified.ts && tsup --config ./tsup.cjs.minified.ts",
+		"prepack": "npm run package",
 		"release:dry-run": "npm run package && vitest run && commit-and-tag-version --dry-run",
 		"release": "npm run package && vitest run && commit-and-tag-version && git push --follow-tags origin main && npm publish && npx jsr publish"
 	},

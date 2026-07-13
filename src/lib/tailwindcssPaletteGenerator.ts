@@ -18,6 +18,7 @@ export const tailwindcssPaletteGenerator = (options: string | string[] | Options
 			'denary'
 		],
 		preserve: true,
+		anchor: false,
 		shades: [
 			{ name: '50', lightness: 98 },
 			{ name: '100', lightness: 95 },
@@ -41,16 +42,22 @@ export const tailwindcssPaletteGenerator = (options: string | string[] | Options
 	options = Object.assign(defaults, options);
 
 	// destructure options
-	const { colors, names, preserve, shades } = options;
+	const { colors, names, preserve, anchor, shades } = options;
 
-	if (colors === undefined || names === undefined || preserve === undefined || shades === undefined)
+	if (
+		colors === undefined ||
+		names === undefined ||
+		preserve === undefined ||
+		anchor === undefined ||
+		shades === undefined
+	)
 		return {};
 
 	// create palette
 	const palette: Palette = colors.reduce(
 		(obj: Record<string | number, Record<string | number, string>>, hex, index) => {
-			const name = names[index];
-			const color = generateColor({ hex, preserve, shades });
+			const name = names[index] as string;
+			const color = generateColor({ hex, preserve, anchor, shades });
 			obj[name] = color;
 			return obj;
 		},
